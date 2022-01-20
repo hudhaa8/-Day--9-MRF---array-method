@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        async function fetchdata() {
+            try {
+                let data = await fetch('https://raw.githubusercontent.com/rvsp/restcountries-json-data/master/res-countries.json');
+                let result = await data.json()
+               // console.log(result)
+let res1=result.map(ele=>ele.population)  // instead of for loop , we can use  map to iterate , after getting array values then use reduce
+console.log(res1)
+
+/* 
+                var temp=0;
+                for(var i=0; i<result.length; i++) {
+                    temp= temp+ result[i].population
+                }
+                //let res=result.map(ele=>ele.population)
+                console.log(temp) */
+
+                let res2=res1.reduce((acc,pre)=> acc+pre)
+                console.log(`Total number of Popualtion: ${res2}`)
+            }
+
+            catch (err) {
+                alert(err)
+            }
+        }
+
+        fetchdata()
+    </script>
+</body>
+
+</html>
